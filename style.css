@@ -1,0 +1,310 @@
+:root {
+    --branco: #ffffff;
+    --fundo: #090909;
+    --vermelho: #9d1717;
+    --vermelho-claro: #d92727;
+    --cinza: #181818;
+    --cinza-claro: #292929;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--fundo);
+    color: var(--branco);
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.conteudo {
+    width: 90%;
+    max-width: 950px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.cabecalho {
+    padding-top: 55px;
+    margin-bottom: 30px;
+}
+
+.pequeno {
+    color: #d83a3a;
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.cabecalho h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.cabecalho p:last-child {
+    color: #999999;
+    font-size: 16px;
+}
+
+.gerador {
+    background-color: #111111;
+    border: 1px solid #333333;
+    border-left: 5px solid var(--vermelho);
+    padding: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.gerador > label {
+    font-size: 13px;
+    color: #999999;
+    letter-spacing: 2px;
+}
+
+.campo {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#campo-senha {
+    width: 100%;
+    background-color: #050505;
+    border: 1px solid #333333;
+    color: white;
+    padding: 18px;
+    font-size: 23px;
+    font-family: monospace;
+}
+
+#campo-senha:focus {
+    outline: none;
+    border-color: var(--vermelho-claro);
+}
+
+#copiar {
+    background-color: var(--vermelho);
+    color: white;
+    border: none;
+    padding: 0 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#copiar:hover {
+    background-color: var(--vermelho-claro);
+}
+
+.parametros {
+    display: flex;
+    gap: 20px;
+}
+
+.parametro {
+    width: 50%;
+    background-color: var(--cinza);
+    border: 1px solid #303030;
+    padding: 22px;
+}
+
+.parametro h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.tamanho {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parametro-senha__botao {
+    width: 48px;
+    height: 45px;
+    background-color: #242424;
+    border: 1px solid #555555;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.parametro-senha__botao:hover {
+    background-color: var(--vermelho);
+}
+
+.parametro-senha__texto {
+    width: 80px;
+    text-align: center;
+    font-size: 23px;
+}
+
+.opcao {
+    display: block;
+    margin-bottom: 13px;
+    color: #dddddd;
+    cursor: pointer;
+}
+
+.checkbox {
+    width: 17px;
+    height: 17px;
+    margin-right: 8px;
+    accent-color: var(--vermelho-claro);
+}
+
+.seguranca {
+    margin-top: 20px;
+    background-color: var(--cinza);
+    border: 1px solid #303030;
+    padding: 22px;
+}
+
+.titulo-forca {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.titulo-forca h3 {
+    font-size: 18px;
+}
+
+#nivel {
+    color: #00c853;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.barra {
+    height: 12px;
+    width: 100%;
+    background-color: #303030;
+}
+
+.forca {
+    height: 12px;
+    width: 75%;
+    background-color: #00c853;
+    transition: 0.3s;
+}
+
+.legenda {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    color: #888888;
+    font-size: 12px;
+}
+
+.legenda span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legenda i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.muito-fraca {
+    background-color: #6b1010;
+}
+
+.fraca {
+    background-color: #e32626;
+}
+
+.moderada {
+    background-color: #ff9d00;
+}
+
+.forte {
+    background-color: #00c853;
+}
+
+.legendaria {
+    background-color: #7b2cff;
+}
+
+.entropia {
+    margin-top: 20px;
+    color: #888888;
+    font-size: 13px;
+}
+
+/* CONTROLE DE VIDEOGAME */
+
+.controle {
+    position: fixed;
+    right: -80px;
+    bottom: 40px;
+    width: 300px;
+    height: 150px;
+    background-color: #151515;
+    border: 5px solid #242424;
+    border-radius: 70px 70px 45px 45px;
+    transform: rotate(-12deg);
+    opacity: 0.45;
+}
+
+.controle-botoes {
+    position: absolute;
+    left: 45px;
+    top: 48px;
+}
+
+.direcional {
+    color: #777777;
+    font-size: 45px;
+}
+
+.botoes {
+    position: absolute;
+    right: 45px;
+    top: 40px;
+}
+
+.botoes span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #252525;
+    color: #777777;
+    margin: 5px;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 700px) {
+
+    .cabecalho h1 {
+        font-size: 29px;
+    }
+
+    .parametros {
+        flex-direction: column;
+    }
+
+    .parametro {
+        width: 100%;
+    }
+
+    .legenda {
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .controle {
+        opacity: 0.2;
+    }
+}

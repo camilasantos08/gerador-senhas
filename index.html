@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Senhas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="controle">
+        <div class="controle-botoes">
+            <span class="direcional">+</span>
+        </div>
+
+        <div class="botoes">
+            <span>A</span>
+            <span>B</span>
+        </div>
+    </div>
+
+    <main class="conteudo">
+
+        <section class="cabecalho">
+            <p class="pequeno">GERADOR DE SENHAS</p>
+            <h1>Crie uma senha segura</h1>
+            <p>Personalize sua senha e veja o nível de segurança.</p>
+        </section>
+
+        <section class="gerador">
+
+            <label for="campo-senha">SUA SENHA</label>
+
+            <div class="campo">
+                <input type="text" id="campo-senha" readonly>
+                <button id="copiar">COPIAR</button>
+            </div>
+
+            <div class="parametros">
+
+                <div class="parametro">
+
+                    <h3>Tamanho da senha</h3>
+
+                    <div class="tamanho">
+                        <button class="parametro-senha__botao">−</button>
+
+                        <p class="parametro-senha__texto">12</p>
+
+                        <button class="parametro-senha__botao">+</button>
+                    </div>
+
+                </div>
+
+                <div class="parametro">
+
+                    <h3>Características</h3>
+
+                    <label class="opcao">
+                        <input type="checkbox" class="checkbox" checked>
+                        Letras maiúsculas
+                    </label>
+
+                    <label class="opcao">
+                        <input type="checkbox" class="checkbox" checked>
+                        Letras minúsculas
+                    </label>
+
+                    <label class="opcao">
+                        <input type="checkbox" class="checkbox" checked>
+                        Números
+                    </label>
+
+                    <label class="opcao">
+                        <input type="checkbox" class="checkbox" checked>
+                        Símbolos
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="seguranca">
+
+                <div class="titulo-forca">
+                    <h3>Segurança da senha</h3>
+                    <span id="nivel">FORTE</span>
+                </div>
+
+                <div class="barra">
+                    <div class="forca"></div>
+                </div>
+
+                <div class="legenda">
+                    <span><i class="muito-fraca"></i>Muito fraca</span>
+                    <span><i class="fraca"></i>Fraca</span>
+                    <span><i class="moderada"></i>Moderada</span>
+                    <span><i class="forte"></i>Forte</span>
+                    <span><i class="legendaria"></i>Legendária</span>
+                </div>
+
+                <p class="entropia"></p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="main.js"></script>
+
+</body>
+</html>
