@@ -1,231 +1,942 @@
-const numeroSenha = document.querySelector('.parametro-senhatexto');
+/* =========================================
+   ELEMENTOS
+========================================= */
+
+const campoSenha =
+    document.querySelector('#campo-senha');
+
+const palavraBase =
+    document.querySelector('#palavra-base');
+
+const novaPalavra =
+    document.querySelector('#nova-palavra');
+
+const tamanhoSlider =
+    document.querySelector('#tamanho');
+
+const valorTamanho =
+    document.querySelector('#valor-tamanho');
+
+const checkboxes =
+    document.querySelectorAll('.checkbox');
+
+const botoesModo =
+    document.querySelectorAll('.modo-botao');
+
+const copiar =
+    document.querySelector('#copiar');
+
+const forcaSenha =
+    document.querySelector('.forca');
+
+const nivelSenha =
+    document.querySelector('#nivel');
+
+const mensagem =
+    document.querySelector('.entropia');
+
+const pontuacao =
+    document.querySelector('#pontuacao');
+
+
+/* =========================================
+   CONFIGURAÇÕES
+========================================= */
 
 let tamanhoSenha = 12;
 
-numeroSenha.textContent = tamanhoSenha;
+let modoAtual = 'leetspeak';
 
-// CARACTERES
+let palavraAtual = '';
 
-const letrasMaiusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-const letrasMinusculas = 'abcdefghijklmnopqrstuvwxyz';
+/* =========================================
+   CONJUNTOS DE CARACTERES
+========================================= */
 
-const numeros = '0123456789';
+const letrasMaiusculas =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-const simbolos = '!?*#%@';
+const letrasMinusculas =
+    'abcdefghijklmnopqrstuvwxyz';
 
-// ELEMENTOS
+const numeros =
+    '0123456789';
 
-const botoes = document.querySelectorAll('.parametro-senhabotao');
+const simbolos =
+    '!?*#%@';
 
-const campoSenha = document.querySelector('#campo-senha');
 
-const checkbox = document.querySelectorAll('.checkbox');
+/* =========================================
+   BANCO DE PALAVRAS
+========================================= */
 
-const forcaSenha = document.querySelector('.forca');
+const palavras = [
+    'Aurora',
+    'Brisa',
+    'Cavalo',
+    'Chama',
+    'Cobra',
+    'Coral',
+    'Estrela',
+    'Fenix',
+    'Flora',
+    'Forte',
+    'Galaxia',
+    'Jardim',
+    'Lago',
+    'Lenda',
+    'Lobo',
+    'Luar',
+    'Lumen',
+    'Marfim',
+    'Montanha',
+    'Nebula',
+    'Nexus',
+    'Onda',
+    'Orion',
+    'Planeta',
+    'Raio',
+    'Rio',
+    'Sombra',
+    'Sol',
+    'Tempestade',
+    'Tigre',
+    'Universo',
+    'Vento',
+    'Vulcao'
+];
 
-const nivelSenha = document.querySelector('#nivel');
 
-const mensagem = document.querySelector('.entropia');
+/* =========================================
+   ALEATÓRIO SEGURO
+========================================= */
 
-const copiar = document.querySelector('#copiar');
+function numeroAleatorio(maximo) {
 
-const pontuacao = document.querySelector('#pontuacao');
+    if (maximo <= 0) {
+        return 0;
+    }
 
-// BOTÕES DE TAMANHO
 
-botoes[0].onclick = diminuiTamanho;
+    /*
+        Usa crypto quando disponível.
+        Isso é melhor para gerar senhas
+        do que Math.random().
+    */
 
-botoes[1].onclick = aumentaTamanho;
+    if (
+        window.crypto &&
+        window.crypto.getRandomValues
+    ) {
 
-// DIMINUIR TAMANHO
+        const array =
+            new Uint32Array(1);
 
-function diminuiTamanho() {
+        window.crypto.getRandomValues(array);
 
-if (tamanhoSenha > 4) { tamanhoSenha--; }
+        return array[0] % maximo;
+    }
 
-numeroSenha.textContent = tamanhoSenha;
 
-geraSenha(); }
-
-// AUMENTAR TAMANHO
-
-function aumentaTamanho() {
-
-if (tamanhoSenha < 30) { tamanhoSenha++; }
-
-numeroSenha.textContent = tamanhoSenha;
-
-geraSenha(); }
-
-// CHECKBOXES
-
-for (let i = 0; i < checkbox.length; i++) {
-
-checkbox[i].onclick = geraSenha;
-
+    return Math.floor(
+        Math.random() * maximo
+    );
 }
 
-// COPIAR SENHA
 
-copiar.onclick = function() {
+/* =========================================
+   ESCOLHE ITEM
+========================================= */
 
-campoSenha.select();
+function escolher(array) {
 
-navigator.clipboard.writeText( campoSenha.value );
+    return array[
+        numeroAleatorio(array.length)
+    ];
+}
 
-copiar.textContent = 'COPIADO!';
 
-setTimeout(function() {
+/* =========================================
+   CARACTERES ALEATÓRIOS
+========================================= */
 
-copiar.textContent = 'COPIAR';
+function escolherCaractere(texto) {
 
-}, 1000); };
+    return texto[
+        numeroAleatorio(texto.length)
+    ];
+}
 
-// GERAR SENHA AO ABRIR
 
-geraSenha();
+/* =========================================
+   OBTÉM ALFABETO
+========================================= */
 
-// FUNÇÃO PARA GERAR SENHA
+function obterAlfabeto() {
+
+    let alfabeto = '';
+
+    if (checkboxes[0].checked) {
+        alfabeto += letrasMaiusculas;
+    }
+
+    if (checkboxes[1].checked) {
+        alfabeto += letrasMinusculas;
+    }
+
+    if (checkboxes[2].checked) {
+        alfabeto += numeros;
+    }
+
+    if (checkboxes[3].checked) {
+        alfabeto += simbolos;
+    }
+
+    return alfabeto;
+}
+
+
+/* =========================================
+   GERA PALAVRA BASE
+========================================= */
+
+function gerarPalavra() {
+
+    palavraAtual =
+        escolher(palavras);
+
+    palavraBase.textContent =
+        palavraAtual;
+}
+
+
+/* =========================================
+   LEETSPEAK
+========================================= */
+
+const mapaLeet = {
+
+    a: ['4', '@'],
+    e: ['3'],
+    i: ['1', '!'],
+    o: ['0'],
+    s: ['5', '$'],
+    t: ['7'],
+    g: ['9'],
+    b: ['8'],
+    l: ['1']
+
+};
+
+
+function transformarLeet(texto) {
+
+    let resultado = '';
+
+
+    for (const caractere of texto) {
+
+        const letra =
+            caractere.toLowerCase();
+
+
+        /*
+            Mantemos algumas letras normais
+            para que a senha continue legível.
+        */
+
+        if (
+            mapaLeet[letra] &&
+            numeroAleatorio(100) < 65
+        ) {
+
+            resultado +=
+                escolher(mapaLeet[letra]);
+
+        } else {
+
+            resultado += caractere;
+
+        }
+    }
+
+
+    return resultado;
+}
+
+
+/* =========================================
+   EMBARALHAR
+========================================= */
+
+function embaralhar(texto) {
+
+    const array =
+        texto.split('');
+
+
+    for (
+        let i = array.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            numeroAleatorio(i + 1);
+
+
+        [
+            array[i],
+            array[j]
+        ] = [
+            array[j],
+            array[i]
+        ];
+    }
+
+
+    return array.join('');
+}
+
+
+/* =========================================
+   VERIFICA TIPOS SELECIONADOS
+========================================= */
+
+function tiposSelecionados() {
+
+    return {
+
+        maiusculas:
+            checkboxes[0].checked,
+
+        minusculas:
+            checkboxes[1].checked,
+
+        numeros:
+            checkboxes[2].checked,
+
+        simbolos:
+            checkboxes[3].checked
+
+    };
+}
+
+
+/* =========================================
+   GERA CARACTERE DE CADA TIPO
+========================================= */
+
+function caracteresObrigatorios() {
+
+    const tipos =
+        tiposSelecionados();
+
+    let resultado = '';
+
+
+    if (tipos.maiusculas) {
+
+        resultado +=
+            escolherCaractere(
+                letrasMaiusculas
+            );
+    }
+
+
+    if (tipos.minusculas) {
+
+        resultado +=
+            escolherCaractere(
+                letrasMinusculas
+            );
+    }
+
+
+    if (tipos.numeros) {
+
+        resultado +=
+            escolherCaractere(
+                numeros
+            );
+    }
+
+
+    if (tipos.simbolos) {
+
+        resultado +=
+            escolherCaractere(
+                simbolos
+            );
+    }
+
+
+    return resultado;
+}
+
+
+/* =========================================
+   COMPLETA SENHA
+========================================= */
+
+function completarSenha(
+    senha,
+    alfabeto
+) {
+
+    let resultado = senha;
+
+
+    while (
+        resultado.length < tamanhoSenha
+    ) {
+
+        resultado +=
+            escolherCaractere(
+                alfabeto
+            );
+    }
+
+
+    /*
+        Se a palavra transformada ficar
+        maior que o tamanho escolhido,
+        pegamos uma parte dela.
+    */
+
+    if (
+        resultado.length > tamanhoSenha
+    ) {
+
+        resultado =
+            resultado.substring(
+                0,
+                tamanhoSenha
+            );
+    }
+
+
+    return resultado;
+}
+
+
+/* =========================================
+   MODO LEETSPEAK
+========================================= */
+
+function gerarLeetspeak() {
+
+    const alfabeto =
+        obterAlfabeto();
+
+
+    if (!alfabeto) {
+
+        mostrarSemOpcoes();
+
+        return;
+    }
+
+
+    /*
+        Se não existe palavra ainda,
+        cria uma.
+    */
+
+    if (!palavraAtual) {
+
+        gerarPalavra();
+    }
+
+
+    /*
+        Transforma a palavra.
+    */
+
+    let senha =
+        transformarLeet(
+            palavraAtual
+        );
+
+
+    /*
+        Adiciona os tipos selecionados.
+    */
+
+    senha +=
+        caracteresObrigatorios();
+
+
+    /*
+        Completa até o tamanho escolhido.
+    */
+
+    senha =
+        completarSenha(
+            senha,
+            alfabeto
+        );
+
+
+    /*
+        Embaralha apenas os caracteres
+        adicionais. A palavra continua
+        visualmente reconhecível quando
+        possível.
+    */
+
+    if (senha.length > palavraAtual.length) {
+
+        const base =
+            senha.substring(
+                0,
+                Math.min(
+                    senha.length,
+                    palavraAtual.length
+                )
+            );
+
+        const extras =
+            senha.substring(
+                base.length
+            );
+
+
+        senha =
+            base +
+            embaralhar(extras);
+    }
+
+
+    campoSenha.value =
+        senha;
+
+
+    classificaSenha(
+        alfabeto.length,
+        true
+    );
+}
+
+
+/* =========================================
+   MODO ALEATÓRIO
+========================================= */
+
+function gerarAleatoria() {
+
+    const alfabeto =
+        obterAlfabeto();
+
+
+    if (!alfabeto) {
+
+        mostrarSemOpcoes();
+
+        return;
+    }
+
+
+    let senha =
+        caracteresObrigatorios();
+
+
+    senha =
+        completarSenha(
+            senha,
+            alfabeto
+        );
+
+
+    senha =
+        embaralhar(senha);
+
+
+    campoSenha.value =
+        senha;
+
+
+    palavraBase.textContent =
+        'Modo aleatório';
+
+
+    classificaSenha(
+        alfabeto.length,
+        false
+    );
+}
+
+
+/* =========================================
+   GERA SENHA
+========================================= */
 
 function geraSenha() {
 
-let alfabeto = '';
+    if (
+        modoAtual === 'leetspeak'
+    ) {
 
-if (checkbox[0].checked) {
+        gerarLeetspeak();
 
-alfabeto += letrasMaiusculas;
+    } else {
 
+        gerarAleatoria();
+    }
 }
 
-if (checkbox[1].checked) {
 
-alfabeto += letrasMinusculas;
+/* =========================================
+   SEM OPÇÕES
+========================================= */
 
+function mostrarSemOpcoes() {
+
+    campoSenha.value =
+        'Selecione uma opção';
+
+    palavraBase.textContent =
+        '—';
+
+    forcaSenha.style.width =
+        '0%';
+
+    forcaSenha.style.backgroundColor =
+        '#6b1010';
+
+    nivelSenha.textContent =
+        'SEM SENHA';
+
+    nivelSenha.style.color =
+        '#e32626';
+
+    mensagem.textContent =
+        'Escolha pelo menos uma característica.';
+
+    pontuacao.textContent =
+        '0';
 }
 
-if (checkbox[2].checked) {
 
-alfabeto += numeros;
+/* =========================================
+   CLASSIFICA SEGURANÇA
+========================================= */
 
+function classificaSenha(
+    tamanhoAlfabeto,
+    leetspeak = false
+) {
+
+    if (!tamanhoAlfabeto) {
+
+        mostrarSemOpcoes();
+
+        return;
+    }
+
+
+    /*
+        Estimativa de entropia.
+
+        No modo Leetspeak aplicamos um
+        pequeno desconto porque a estrutura
+        baseada em palavras é mais previsível
+        que uma senha totalmente aleatória.
+    */
+
+    let entropia =
+        tamanhoSenha *
+        Math.log2(tamanhoAlfabeto);
+
+
+    if (leetspeak) {
+
+        entropia *= 0.72;
+    }
+
+
+    /*
+        MUITO FRACA
+    */
+
+    if (entropia < 30) {
+
+        forcaSenha.style.width =
+            '20%';
+
+        forcaSenha.style.backgroundColor =
+            '#6b1010';
+
+        nivelSenha.textContent =
+            'MUITO FRACA';
+
+        nivelSenha.style.color =
+            '#e32626';
+    }
+
+
+    /*
+        FRACA
+    */
+
+    else if (entropia < 45) {
+
+        forcaSenha.style.width =
+            '40%';
+
+        forcaSenha.style.backgroundColor =
+            '#e32626';
+
+        nivelSenha.textContent =
+            'FRACA';
+
+        nivelSenha.style.color =
+            '#e32626';
+    }
+
+
+    /*
+        MODERADA
+    */
+
+    else if (entropia < 60) {
+
+        forcaSenha.style.width =
+            '60%';
+
+        forcaSenha.style.backgroundColor =
+            '#ff9d00';
+
+        nivelSenha.textContent =
+            'MODERADA';
+
+        nivelSenha.style.color =
+            '#ff9d00';
+    }
+
+
+    /*
+        FORTE
+    */
+
+    else if (entropia < 75) {
+
+        forcaSenha.style.width =
+            '80%';
+
+        forcaSenha.style.backgroundColor =
+            '#00c853';
+
+        nivelSenha.textContent =
+            'FORTE';
+
+        nivelSenha.style.color =
+            '#00e676';
+    }
+
+
+    /*
+        LEGENDÁRIA
+    */
+
+    else {
+
+        forcaSenha.style.width =
+            '100%';
+
+        forcaSenha.style.backgroundColor =
+            '#8b35ff';
+
+        nivelSenha.textContent =
+            'LEGENDÁRIA';
+
+        nivelSenha.style.color =
+            '#b77aff';
+    }
+
+
+    const pontos =
+        Math.floor(entropia);
+
+
+    pontuacao.textContent =
+        pontos;
+
+
+    if (leetspeak) {
+
+        mensagem.textContent =
+            'Leetspeak inteligente • ' +
+            pontos +
+            ' pontos de segurança.';
+
+    } else {
+
+        mensagem.textContent =
+            'Senha aleatória • ' +
+            pontos +
+            ' pontos de segurança.';
+    }
 }
 
-if (checkbox[3].checked) {
 
-alfabeto += simbolos;
+/* =========================================
+   SLIDER
+========================================= */
 
-}
+tamanhoSlider.addEventListener(
+    'input',
+    function () {
 
-// NENHUMA OPÇÃO
+        tamanhoSenha =
+            Number(this.value);
 
-if (alfabeto.length == 0) {
+        valorTamanho.textContent =
+            tamanhoSenha;
 
-campoSenha.value = 'Selecione uma opção';
+        geraSenha();
+    }
+);
 
-classificaSenha(0);
 
-return; }
+/* =========================================
+   NOVA PALAVRA
+========================================= */
 
-let senha = '';
+novaPalavra.addEventListener(
+    'click',
+    function () {
 
-// GERA OS CARACTERES
+        gerarPalavra();
 
-for ( let i = 0; i < tamanhoSenha; i++ ) {
+        geraSenha();
+    }
+);
 
-let numeroAleatorio = Math.floor( Math.random() * alfabeto.length );
 
-senha += alfabeto[numeroAleatorio]; }
+/* =========================================
+   TROCA DE MODO
+========================================= */
 
-campoSenha.value = senha;
+botoesModo.forEach(
+    function (botao) {
 
-classificaSenha( alfabeto.length ); }
+        botao.addEventListener(
+            'click',
+            function () {
 
-// CLASSIFICAR SEGURANÇA
+                botoesModo.forEach(
+                    function (item) {
 
-function classificaSenha( tamanhoAlfabeto ) {
+                        item.classList.remove(
+                            'ativo'
+                        );
+                    }
+                );
 
-// SEM OPÇÕES
 
-if (tamanhoAlfabeto == 0) {
+                this.classList.add(
+                    'ativo'
+                );
 
-forcaSenha.style.width = '0%';
 
-nivelSenha.textContent = 'SEM SENHA';
+                modoAtual =
+                    this.dataset.modo;
 
-mensagem.textContent = 'Escolha pelo menos uma característica.';
 
-pontuacao.textContent = '0';
+                if (
+                    modoAtual === 'leetspeak'
+                ) {
 
-return; }
+                    gerarPalavra();
 
-// CALCULA ENTROPIA
+                }
 
-let entropia = tamanhoSenha * Math.log2(tamanhoAlfabeto);
 
-forcaSenha.style.width = '0%';
+                geraSenha();
+            }
+        );
+    }
+);
 
-// MUITO FRACA
 
-if (entropia < 30) {
+/* =========================================
+   CHECKBOXES
+========================================= */
 
-forcaSenha.style.width = '20%';
+checkboxes.forEach(
+    function (checkbox) {
 
-forcaSenha.style.backgroundColor = '#6b1010';
+        checkbox.addEventListener(
+            'change',
+            geraSenha
+        );
+    }
+);
 
-nivelSenha.textContent = 'MUITO FRACA';
 
-}
+/* =========================================
+   COPIAR
+========================================= */
 
-// FRACA
+copiar.addEventListener(
+    'click',
+    async function () {
 
-else if (entropia < 45) {
+        const senha =
+            campoSenha.value;
 
-forcaSenha.style.width = '40%';
 
-forcaSenha.style.backgroundColor = '#e32626';
+        if (
+            !senha ||
+            senha === 'Selecione uma opção'
+        ) {
 
-nivelSenha.textContent = 'FRACA';
+            return;
+        }
 
-}
 
-// MODERADA
+        try {
 
-else if (entropia < 60) {
+            await navigator.clipboard.writeText(
+                senha
+            );
 
-forcaSenha.style.width = '60%';
+        } catch (erro) {
 
-forcaSenha.style.backgroundColor = '#ff9d00';
+            campoSenha.select();
 
-nivelSenha.textContent = 'MODERADA';
+            document.execCommand(
+                'copy'
+            );
+        }
 
-}
 
-// FORTE
+        copiar.textContent =
+            'COPIADO!';
 
-else if (entropia < 75) {
 
-forcaSenha.style.width = '80%';
+        setTimeout(
+            function () {
 
-forcaSenha.style.backgroundColor = '#00c853';
+                copiar.textContent =
+                    'COPIAR';
 
-nivelSenha.textContent = 'FORTE';
+            },
+            1200
+        );
+    }
+);
 
-}
 
-// LEGENDÁRIA
+/* =========================================
+   INICIALIZAÇÃO
+========================================= */
 
-else {
+valorTamanho.textContent =
+    tamanhoSenha;
 
-forcaSenha.style.width = '100%';
+gerarPalavra();
 
-forcaSenha.style.backgroundColor = '#8b35ff';
-
-nivelSenha.textContent = 'LEGENDÁRIA'; }
-
-// ATUALIZA O SCORE
-
-pontuacao.textContent = Math.floor(entropia);
-
-// MENSAGEM
-
-mensagem.textContent = 'Nível de segurança: ' + Math.floor(entropia) + ' pontos.'; }
+geraSenha();
