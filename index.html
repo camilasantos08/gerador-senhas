@@ -1,199 +1,170 @@
-<!DOCTYPE html> <html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Gerador de Senhas</title> <link rel="stylesheet" href="style.css"> </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gerador de Senhas</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
 
 <body>
 
-<!-- CONTROLE DE VIDEOGAME --> <div class="controle">
+    <!-- CONTROLE DE VIDEOGAME -->
+    <div class="controle" aria-hidden="true">
 
-<div class="controle-botoes"> <span class="direcional">+</span> </div>
+        <div class="controle-botoes">
+            <span class="direcional">+</span>
+        </div>
 
-<div class="botoes"> <span>A</span> <span>B</span> </div>
+        <div class="botoes">
+            <span>A</span>
+            <span>B</span>
+        </div>
 
-</div>
+    </div>
 
-<main class="pagina">
 
-<!-- ÁREA PRINCIPAL --> <section class="area-principal">
+    <main class="pagina">
 
-<header class="cabecalho">
+        <!-- ÁREA PRINCIPAL -->
+        <section class="area-principal">
 
-<p class="pequeno">PASSWORD // GAME</p>
+            <header class="cabecalho">
 
-<h1>Crie uma senha segura</h1>
+                <p class="pequeno">PASSWORD // GAME</p>
 
-<p> Monte sua senha, aumente sua pontuação e alcance o nível máximo. </p>
+                <h1>Crie uma senha segura</h1>
 
-</header>
+                <p>
+                    Gere palavras legíveis e transforme-as
+                    em senhas inteligentes usando Leetspeak.
+                </p>
 
-<!-- GERADOR --> <section class="gerador">
+            </header>
 
-<label for="campo-senha">SUA SENHA</label>
 
-<div class="campo">
+            <!-- GERADOR -->
+            <section class="gerador">
 
-<input type="text" id="campo-senha" readonly >
+                <label for="campo-senha">SUA SENHA</label>
 
-<button id="copiar"> COPIAR </button>
+                <div class="campo">
 
-</div>
+                    <input
+                        type="text"
+                        id="campo-senha"
+                        readonly
+                        aria-label="Senha gerada"
+                    >
 
-<!-- PARAMETROS --> <div class="parametros">
+                    <button
+                        id="copiar"
+                        type="button"
+                    >
+                        COPIAR
+                    </button>
 
-<!-- TAMANHO --> <div class="parametro">
+                </div>
 
-<h3>Tamanho</h3>
 
-<div class="tamanho">
+                <!-- PALAVRA BASE -->
+                <div class="palavra-gerada">
 
-<button class="parametro-senhabotao"> − </button>
+                    <div>
 
-<p class="parametro-senhatexto"> 12 </p>
+                        <span class="mini-label">
+                            PALAVRA BASE
+                        </span>
 
-<button class="parametro-senhabotao"> + </button>
+                        <strong id="palavra-base">
+                            —
+                        </strong>
 
-</div>
+                    </div>
 
-</div>
+                    <button
+                        id="nova-palavra"
+                        type="button"
+                    >
+                        ↻ NOVA
+                    </button>
 
-<!-- CARACTERÍSTICAS --> <div class="parametro caracteristicas">
+                </div>
 
-<div class="titulo-caracteristicas">
 
-<h3>TIPO DE SENHA</h3>
+                <!-- MODO -->
+                <div class="modo">
 
-<span>SELECIONE</span>
+                    <button
+                        type="button"
+                        class="modo-botao ativo"
+                        data-modo="leetspeak"
+                    >
+                        <span>01</span>
+                        LEETSPEAK
+                    </button>
 
-</div>
+                    <button
+                        type="button"
+                        class="modo-botao"
+                        data-modo="aleatoria"
+                    >
+                        <span>02</span>
+                        ALEATÓRIA
+                    </button>
 
-<div class="opcoes">
+                </div>
 
-<!-- MAIÚSCULAS --> <label class="opcao">
 
-<input type="checkbox" class="checkbox" checked >
+                <!-- PARÂMETROS -->
+                <div class="parametros">
 
-<span class="icone"> A </span>
+                    <!-- TAMANHO -->
+                    <div class="parametro tamanho-parametro">
 
-<span class="texto-opcao">
+                        <div class="titulo-parametro">
 
-<strong> Maiúsculas </strong>
+                            <div>
 
-<small> A B C D </small>
+                                <h3>Tamanho</h3>
 
-</span>
+                                <span>
+                                    COMPRIMENTO DA SENHA
+                                </span>
 
-</label>
+                            </div>
 
-<!-- MINÚSCULAS --> <label class="opcao">
+                            <strong id="valor-tamanho">
+                                12
+                            </strong>
 
-<input type="checkbox" class="checkbox" checked >
+                        </div>
 
-<span class="icone"> a </span>
 
-<span class="texto-opcao">
+                        <div class="slider-area">
 
-<strong> Minúsculas </strong>
+                            <span>4</span>
 
-<small> a b c d </small>
+                            <input
+                                type="range"
+                                id="tamanho"
+                                min="4"
+                                max="30"
+                                value="12"
+                                aria-label="Tamanho da senha"
+                            >
 
-</span>
+                            <span>30</span>
 
-</label>
+                        </div>
 
-<!-- NÚMEROS --> <label class="opcao">
+                    </div>
 
-<input type="checkbox" class="checkbox" checked >
 
-<span class="icone"> # </span>
+                    <!-- CARACTERÍSTICAS -->
+                    <div class="parametro caracteristicas">
 
-<span class="texto-opcao">
-
-<strong> Números </strong>
-
-<small> 1 2 3 4 </small>
-
-</span>
-
-</label>
-
-<!-- SÍMBOLOS --> <label class="opcao">
-
-<input type="checkbox" class="checkbox" checked >
-
-<span class="icone"> ! </span>
-
-<span class="texto-opcao">
-
-<strong> Símbolos </strong>
-
-<small> ! @ # $ </small>
-
-</span>
-
-</label>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-</section>
-
-<!-- PAINEL DIREITO --> <aside class="painel-seguranca">
-
-<!-- SCORE --> <div class="placar">
-
-<span class="placar-titulo"> SCORE </span>
-
-<strong id="pontuacao"> 0 </strong>
-
-<small> PONTOS </small>
-
-</div>
-
-<!-- SEGURANÇA --> <div class="seguranca">
-
-<div class="titulo-forca">
-
-<h3> SEGURANÇA </h3>
-
-<span id="nivel"> FORTE </span>
-
-</div>
-
-<div class="barra">
-
-<div class="forca"></div>
-
-</div>
-
-<div class="legenda">
-
-<span> <i class="muito-fraca"></i> Muito fraca </span>
-
-<span> <i class="fraca"></i> Fraca </span>
-
-<span> <i class="moderada"></i> Moderada </span>
-
-<span> <i class="forte"></i> Forte </span>
-
-<span> <i class="legendaria"></i> Legendária </span>
-
-</div>
-
-<p class="entropia"></p>
-
-</div>
-
-</aside>
-
-</main>
-
-<script src="main.js"></script>
-
-</body>
-
-</html>
+                        <div class="titulo-caracteristicas">
