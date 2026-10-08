@@ -1,48 +1,138 @@
-<!DOCTYPE html> <html lang="pt-br"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Gerador de Senhas</title> <link rel="stylesheet" href="style.css"> </head>
+<!DOCTYPE html> <html lang="pt-br">
+
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Gerador de Senhas</title> <link rel="stylesheet" href="style.css"> </head>
 
 <body>
 
- <div class="controle"> <div class="controle-botoes"> <span class="direcional">+</span> </div>
+<!-- CONTROLE DE VIDEOGAME --> <div class="controle">
 
-<div class="botoes"> <span>A</span> <span>B</span> </div> </div>
+<div class="controle-botoes"> <span class="direcional">+</span> </div>
+
+<div class="botoes"> <span>A</span> <span>B</span> </div>
+
+</div>
 
 <main class="pagina">
 
-<section class="area-principal">
+<!-- ÁREA PRINCIPAL --> <section class="area-principal">
 
-<header class="cabecalho"> <p class="pequeno">PASSWORD // GAME</p> <h1>Crie uma senha segura</h1> <p>Monte sua senha, aumente sua pontuação e alcance o nível máximo.</p> </header>
+<header class="cabecalho">
 
-<section class="gerador">
+<p class="pequeno">PASSWORD // GAME</p>
+
+<h1>Crie uma senha segura</h1>
+
+<p> Monte sua senha, aumente sua pontuação e alcance o nível máximo. </p>
+
+</header>
+
+<!-- GERADOR --> <section class="gerador">
 
 <label for="campo-senha">SUA SENHA</label>
 
-<div class="campo"> <input type="text" id="campo-senha" readonly> <button id="copiar">COPIAR</button> </div>
+<div class="campo">
 
-<div class="parametros">
+<input type="text" id="campo-senha" readonly >
 
-<div class="parametro">
+<button id="copiar"> COPIAR </button>
+
+</div>
+
+<!-- PARAMETROS --> <div class="parametros">
+
+<!-- TAMANHO --> <div class="parametro">
 
 <h3>Tamanho</h3>
 
-<div class="tamanho"> <button class="parametro-senhabotao">−</button>
+<div class="tamanho">
 
-<p class="parametro-senhatexto">12</p>
+<button class="parametro-senhabotao"> − </button>
 
-<button class="parametro-senhabotao">+</button> </div>
+<p class="parametro-senhatexto"> 12 </p>
+
+<button class="parametro-senhabotao"> + </button>
 
 </div>
 
-<div class="parametro">
+</div>
 
-<h3>Características</h3>
+<!-- CARACTERÍSTICAS --> <div class="parametro caracteristicas">
 
-<label class="opcao"> <input type="checkbox" class="checkbox" checked> Letras maiúsculas </label>
+<div class="titulo-caracteristicas">
 
-<label class="opcao"> <input type="checkbox" class="checkbox" checked> Letras minúsculas </label>
+<h3>TIPO DE SENHA</h3>
 
-<label class="opcao"> <input type="checkbox" class="checkbox" checked> Números </label>
+<span>SELECIONE</span>
 
-<label class="opcao"> <input type="checkbox" class="checkbox" checked> Símbolos </label>
+</div>
+
+<div class="opcoes">
+
+<!-- MAIÚSCULAS --> <label class="opcao">
+
+<input type="checkbox" class="checkbox" checked >
+
+<span class="icone"> A </span>
+
+<span class="texto-opcao">
+
+<strong> Maiúsculas </strong>
+
+<small> A B C D </small>
+
+</span>
+
+</label>
+
+<!-- MINÚSCULAS --> <label class="opcao">
+
+<input type="checkbox" class="checkbox" checked >
+
+<span class="icone"> a </span>
+
+<span class="texto-opcao">
+
+<strong> Minúsculas </strong>
+
+<small> a b c d </small>
+
+</span>
+
+</label>
+
+<!-- NÚMEROS --> <label class="opcao">
+
+<input type="checkbox" class="checkbox" checked >
+
+<span class="icone"> # </span>
+
+<span class="texto-opcao">
+
+<strong> Números </strong>
+
+<small> 1 2 3 4 </small>
+
+</span>
+
+</label>
+
+<!-- SÍMBOLOS --> <label class="opcao">
+
+<input type="checkbox" class="checkbox" checked >
+
+<span class="icone"> ! </span>
+
+<span class="texto-opcao">
+
+<strong> Símbolos </strong>
+
+<small> ! @ # $ </small>
+
+</span>
+
+</label>
+
+</div>
 
 </div>
 
@@ -52,17 +142,47 @@
 
 </section>
 
- <aside class="painel-seguranca">
+<!-- PAINEL DIREITO --> <aside class="painel-seguranca">
 
-<div class="placar"> <span class="placar-titulo">SCORE</span> <strong id="pontuacao">0</strong> <small>PONTOS</small> </div>
+<!-- SCORE --> <div class="placar">
 
-<div class="seguranca">
+<span class="placar-titulo"> SCORE </span>
 
-<div class="titulo-forca"> <h3>SEGURANÇA</h3> <span id="nivel">FORTE</span> </div>
+<strong id="pontuacao"> 0 </strong>
 
-<div class="barra"> <div class="forca"></div> </div>
+<small> PONTOS </small>
 
-<div class="legenda"> <span><i class="muito-fraca"></i>Muito fraca</span> <span><i class="fraca"></i>Fraca</span> <span><i class="moderada"></i>Moderada</span> <span><i class="forte"></i>Forte</span> <span><i class="legendaria"></i>Legendária</span> </div>
+</div>
+
+<!-- SEGURANÇA --> <div class="seguranca">
+
+<div class="titulo-forca">
+
+<h3> SEGURANÇA </h3>
+
+<span id="nivel"> FORTE </span>
+
+</div>
+
+<div class="barra">
+
+<div class="forca"></div>
+
+</div>
+
+<div class="legenda">
+
+<span> <i class="muito-fraca"></i> Muito fraca </span>
+
+<span> <i class="fraca"></i> Fraca </span>
+
+<span> <i class="moderada"></i> Moderada </span>
+
+<span> <i class="forte"></i> Forte </span>
+
+<span> <i class="legendaria"></i> Legendária </span>
+
+</div>
 
 <p class="entropia"></p>
 
@@ -74,4 +194,6 @@
 
 <script src="main.js"></script>
 
-</body> </html>
+</body>
+
+</html>
