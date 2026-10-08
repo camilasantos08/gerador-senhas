@@ -16,6 +16,7 @@ const forcaSenha = document.querySelector('.forca');
 const nivelSenha = document.querySelector('#nivel');
 const mensagem = document.querySelector('.entropia');
 const copiar = document.querySelector('#copiar');
+const pontuacao = document.querySelector('#pontuacao');
 
 botoes[0].onclick = diminuiTamanho;
 botoes[1].onclick = aumentaTamanho;
@@ -45,8 +46,11 @@ for (let i = 0; i < checkbox.length; i++) {
 }
 
 copiar.onclick = function() {
+
     campoSenha.select();
+
     navigator.clipboard.writeText(campoSenha.value);
+
     copiar.textContent = 'COPIADO!';
 
     setTimeout(function() {
@@ -77,8 +81,11 @@ function geraSenha() {
     }
 
     if (alfabeto.length == 0) {
+
         campoSenha.value = 'Selecione uma opção';
+
         classificaSenha(0);
+
         return;
     }
 
@@ -101,9 +108,16 @@ function geraSenha() {
 function classificaSenha(tamanhoAlfabeto) {
 
     if (tamanhoAlfabeto == 0) {
+
         forcaSenha.style.width = '0%';
+
         nivelSenha.textContent = 'SEM SENHA';
-        mensagem.textContent = 'Escolha pelo menos uma característica.';
+
+        mensagem.textContent =
+            'Escolha pelo menos uma característica.';
+
+        pontuacao.textContent = '0';
+
         return;
     }
 
@@ -114,34 +128,48 @@ function classificaSenha(tamanhoAlfabeto) {
     if (entropia < 30) {
 
         forcaSenha.style.width = '20%';
+
         forcaSenha.style.backgroundColor = '#6b1010';
+
         nivelSenha.textContent = 'MUITO FRACA';
 
     } else if (entropia < 45) {
 
         forcaSenha.style.width = '40%';
+
         forcaSenha.style.backgroundColor = '#e32626';
+
         nivelSenha.textContent = 'FRACA';
 
     } else if (entropia < 60) {
 
         forcaSenha.style.width = '60%';
+
         forcaSenha.style.backgroundColor = '#ff9d00';
+
         nivelSenha.textContent = 'MODERADA';
 
     } else if (entropia < 75) {
 
         forcaSenha.style.width = '80%';
+
         forcaSenha.style.backgroundColor = '#00c853';
+
         nivelSenha.textContent = 'FORTE';
 
     } else {
 
         forcaSenha.style.width = '100%';
-        forcaSenha.style.backgroundColor = '#7b2cff';
+
+        forcaSenha.style.backgroundColor = '#8b35ff';
+
         nivelSenha.textContent = 'LEGENDÁRIA';
     }
 
+    pontuacao.textContent = Math.floor(entropia);
+
     mensagem.textContent =
-        'Nível de segurança: ' + Math.floor(entropia) + ' pontos.';
+        'Nível de segurança: ' +
+        Math.floor(entropia) +
+        ' pontos.';
 }
