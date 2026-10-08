@@ -1,310 +1,161 @@
-:root {
-    --branco: #ffffff;
-    --fundo: #090909;
-    --vermelho: #9d1717;
-    --vermelho-claro: #d92727;
-    --cinza: #181818;
-    --cinza-claro: #292929;
-}
+:root { --branco: #ffffff; --fundo: #080808; --vermelho: #a71919; --vermelho-claro: #e52d2d; --cinza: #151515; --cinza-claro: #252525; --verde: #00e676; --roxo: #8b35ff; }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+{
 
-body {
-    background-color: var(--fundo);
-    color: var(--branco);
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
+box-sizing: border-box; margin: 0; padding: 0; }
 
-.conteudo {
-    width: 90%;
-    max-width: 950px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-}
+body { background: var(--fundo); color: var(--branco); font-family: Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }
 
-.cabecalho {
-    padding-top: 55px;
-    margin-bottom: 30px;
-}
 
-.pequeno {
-    color: #d83a3a;
-    font-size: 13px;
-    letter-spacing: 3px;
-    margin-bottom: 12px;
-}
 
-.cabecalho h1 {
-    font-size: 38px;
-    margin-bottom: 10px;
-}
+body::before { content: ""; position: fixed; width: 450px; height: 450px; left: -200px; top: 20%; background: var(--vermelho); opacity: 0.08; border-radius: 50%; }
 
-.cabecalho p:last-child {
-    color: #999999;
-    font-size: 16px;
-}
 
-.gerador {
-    background-color: #111111;
-    border: 1px solid #333333;
-    border-left: 5px solid var(--vermelho);
-    padding: 30px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-}
 
-.gerador > label {
-    font-size: 13px;
-    color: #999999;
-    letter-spacing: 2px;
-}
+.pagina { min-height: 100vh; display: grid; grid-template-columns: 1fr 350px; gap: 60px; padding: 60px 8% 60px 260px; }
 
-.campo {
-    display: flex;
-    margin-top: 10px;
-    margin-bottom: 30px;
-}
 
-#campo-senha {
-    width: 100%;
-    background-color: #050505;
-    border: 1px solid #333333;
-    color: white;
-    padding: 18px;
-    font-size: 23px;
-    font-family: monospace;
-}
 
-#campo-senha:focus {
-    outline: none;
-    border-color: var(--vermelho-claro);
-}
+.area-principal { max-width: 850px; }
 
-#copiar {
-    background-color: var(--vermelho);
-    color: white;
-    border: none;
-    padding: 0 25px;
-    cursor: pointer;
-    font-weight: bold;
-}
+.cabecalho { margin-bottom: 35px; }
 
-#copiar:hover {
-    background-color: var(--vermelho-claro);
-}
+.pequeno { color: var(--vermelho-claro); font-size: 12px; font-weight: bold; letter-spacing: 4px; margin-bottom: 15px; }
 
-.parametros {
-    display: flex;
-    gap: 20px;
-}
+.cabecalho h1 { font-size: 42px; margin-bottom: 12px; }
 
-.parametro {
-    width: 50%;
-    background-color: var(--cinza);
-    border: 1px solid #303030;
-    padding: 22px;
-}
+.cabecalho p:last-child { color: #888; font-size: 16px; }
 
-.parametro h3 {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
 
-.tamanho {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.parametro-senha__botao {
-    width: 48px;
-    height: 45px;
-    background-color: #242424;
-    border: 1px solid #555555;
-    color: white;
-    font-size: 25px;
-    cursor: pointer;
-}
+.gerador { background: #101010; border: 1px solid #292929; border-top: 4px solid var(--vermelho); padding: 28px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); }
 
-.parametro-senha__botao:hover {
-    background-color: var(--vermelho);
-}
+.gerador > label { color: #777; font-size: 12px; letter-spacing: 2px; }
 
-.parametro-senha__texto {
-    width: 80px;
-    text-align: center;
-    font-size: 23px;
-}
 
-.opcao {
-    display: block;
-    margin-bottom: 13px;
-    color: #dddddd;
-    cursor: pointer;
-}
 
-.checkbox {
-    width: 17px;
-    height: 17px;
-    margin-right: 8px;
-    accent-color: var(--vermelho-claro);
-}
+.campo { display: flex; margin-top: 10px; margin-bottom: 25px; }
 
-.seguranca {
-    margin-top: 20px;
-    background-color: var(--cinza);
-    border: 1px solid #303030;
-    padding: 22px;
-}
+#campo-senha { width: 100%; background: #050505; border: 1px solid #333; color: white; padding: 18px; font-size: 21px; font-family: monospace; }
 
-.titulo-forca {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
+#campo-senha:focus { outline: none; border-color: var(--vermelho-claro); }
 
-.titulo-forca h3 {
-    font-size: 18px;
-}
+#copiar { background: var(--vermelho); color: white; border: none; padding: 0 25px; cursor: pointer; font-weight: bold; }
 
-#nivel {
-    color: #00c853;
-    font-size: 13px;
-    font-weight: bold;
-}
+#copiar:hover { background: var(--vermelho-claro); }
 
-.barra {
-    height: 12px;
-    width: 100%;
-    background-color: #303030;
-}
 
-.forca {
-    height: 12px;
-    width: 75%;
-    background-color: #00c853;
-    transition: 0.3s;
-}
 
-.legenda {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-    color: #888888;
-    font-size: 12px;
-}
+.parametros { display: flex; gap: 15px; }
 
-.legenda span {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
+.parametro { width: 50%; background: var(--cinza); border: 1px solid #292929; padding: 22px; }
 
-.legenda i {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    display: inline-block;
-}
+.parametro h3 { font-size: 16px; margin-bottom: 20px; color: #ddd; }
 
-.muito-fraca {
-    background-color: #6b1010;
-}
 
-.fraca {
-    background-color: #e32626;
-}
 
-.moderada {
-    background-color: #ff9d00;
-}
+.tamanho { display: flex; align-items: center; }
 
-.forte {
-    background-color: #00c853;
-}
+.parametro-senhabotao { width: 45px; height: 45px; background: #222; border: 1px solid #444; color: white; font-size: 23px; cursor: pointer; }
 
-.legendaria {
-    background-color: #7b2cff;
-}
+.parametro-senhabotao:hover { background: var(--vermelho); }
 
-.entropia {
-    margin-top: 20px;
-    color: #888888;
-    font-size: 13px;
-}
+.parametro-senhatexto { width: 70px; text-align: center; font-size: 22px; }
 
-/* CONTROLE DE VIDEOGAME */
 
-.controle {
-    position: fixed;
-    right: -80px;
-    bottom: 40px;
-    width: 300px;
-    height: 150px;
-    background-color: #151515;
-    border: 5px solid #242424;
-    border-radius: 70px 70px 45px 45px;
-    transform: rotate(-12deg);
-    opacity: 0.45;
-}
 
-.controle-botoes {
-    position: absolute;
-    left: 45px;
-    top: 48px;
-}
+.opcao { display: block; margin-bottom: 13px; color: #ccc; cursor: pointer; }
 
-.direcional {
-    color: #777777;
-    font-size: 45px;
-}
+.checkbox { width: 16px; height: 16px; margin-right: 8px; accent-color: var(--vermelho-claro); }
 
-.botoes {
-    position: absolute;
-    right: 45px;
-    top: 40px;
-}
 
-.botoes span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: #252525;
-    color: #777777;
-    margin: 5px;
-    font-size: 12px;
-}
+
+.painel-seguranca { padding-top: 75px; }
+
+
+
+.placar { background: #101010; border: 1px solid #303030; border-right: 4px solid var(--vermelho-claro); padding: 25px; text-align: right; margin-bottom: 15px; }
+
+.placar-titulo { display: block; color: var(--vermelho-claro); font-size: 12px; letter-spacing: 3px; margin-bottom: 5px; }
+
+.placar strong { display: block; font-size: 55px; line-height: 1; }
+
+.placar small { color: #666; font-size: 10px; letter-spacing: 2px; }
+
+
+
+.seguranca { background: var(--cinza); border: 1px solid #303030; padding: 22px; }
+
+.titulo-forca { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+
+.titulo-forca h3 { font-size: 14px; letter-spacing: 1px; }
+
+#nivel { color: var(--verde); font-size: 12px; font-weight: bold; }
+
+
+
+.barra { height: 12px; width: 100%; background: #303030; }
+
+.forca { height: 12px; width: 75%; background: var(--verde); transition: 0.3s; }
+
+
+
+.legenda { display: flex; flex-direction: column; gap: 9px; margin-top: 18px; color: #777; font-size: 11px; }
+
+.legenda span { display: flex; align-items: center; gap: 7px; }
+
+.legenda i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+
+.muito-fraca { background: #6b1010; }
+
+.fraca { background: #e32626; }
+
+.moderada { background: #ff9d00; }
+
+.forte { background: #00c853; }
+
+.legendaria { background: var(--roxo); }
+
+.entropia { margin-top: 22px; padding-top: 15px; border-top: 1px solid #292929; color: #888; font-size: 12px; line-height: 1.5; }
+
+
+
+.controle { position: fixed; left: 25px; top: 50%; transform: translateY(-50%) rotate(-8deg); width: 190px; height: 115px; background: #121212; border: 5px solid #252525; border-radius: 55px 55px 35px 35px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); z-index: 5; }
+
+
+
+.controle-botoes { position: absolute; left: 35px; top: 35px; }
+
+.direcional { color: #777; font-size: 42px; font-weight: bold; }
+
+
+
+.botoes { position: absolute; right: 25px; top: 28px; }
+
+.botoes span { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #252525; color: #999; margin: 3px; font-size: 11px; border: 1px solid #444; }
+
+
+
+@media screen and (max-width: 1000px) {
+
+.pagina { grid-template-columns: 1fr; padding: 40px 30px 40px 180px; }
+
+.painel-seguranca { padding-top: 0; max-width: 850px; }
+
+.legenda { flex-direction: row; justify-content: space-between; flex-wrap: wrap; } }
 
 @media screen and (max-width: 700px) {
 
-    .cabecalho h1 {
-        font-size: 29px;
-    }
+.pagina { display: block; padding: 30px 20px 40px 20px; }
 
-    .parametros {
-        flex-direction: column;
-    }
+.controle { position: relative; left: auto; top: auto; transform: rotate(-5deg); margin: 20px auto 40px; }
 
-    .parametro {
-        width: 100%;
-    }
+.cabecalho h1 { font-size: 30px; }
 
-    .legenda {
-        flex-direction: column;
-        gap: 7px;
-    }
+.parametros { flex-direction: column; }
 
-    .controle {
-        opacity: 0.2;
-    }
-}
+.parametro { width: 100%; }
+
+.painel-seguranca { margin-top: 20px; }
+
+.legenda { flex-direction: column; } }
