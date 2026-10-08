@@ -1,114 +1,77 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Senhas</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+<!DOCTYPE html> <html lang="pt-br"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Gerador de Senhas</title> <link rel="stylesheet" href="style.css"> </head>
 
 <body>
 
-    <div class="controle">
-        <div class="controle-botoes">
-            <span class="direcional">+</span>
-        </div>
+ <div class="controle"> <div class="controle-botoes"> <span class="direcional">+</span> </div>
 
-        <div class="botoes">
-            <span>A</span>
-            <span>B</span>
-        </div>
-    </div>
+<div class="botoes"> <span>A</span> <span>B</span> </div> </div>
 
-    <main class="conteudo">
+<main class="pagina">
 
-        <section class="cabecalho">
-            <p class="pequeno">GERADOR DE SENHAS</p>
-            <h1>Crie uma senha segura</h1>
-            <p>Personalize sua senha e veja o nível de segurança.</p>
-        </section>
+<section class="area-principal">
 
-        <section class="gerador">
+<header class="cabecalho"> <p class="pequeno">PASSWORD // GAME</p> <h1>Crie uma senha segura</h1> <p>Monte sua senha, aumente sua pontuação e alcance o nível máximo.</p> </header>
 
-            <label for="campo-senha">SUA SENHA</label>
+<section class="gerador">
 
-            <div class="campo">
-                <input type="text" id="campo-senha" readonly>
-                <button id="copiar">COPIAR</button>
-            </div>
+<label for="campo-senha">SUA SENHA</label>
 
-            <div class="parametros">
+<div class="campo"> <input type="text" id="campo-senha" readonly> <button id="copiar">COPIAR</button> </div>
 
-                <div class="parametro">
+<div class="parametros">
 
-                    <h3>Tamanho da senha</h3>
+<div class="parametro">
 
-                    <div class="tamanho">
-                        <button class="parametro-senha__botao">−</button>
+<h3>Tamanho</h3>
 
-                        <p class="parametro-senha__texto">12</p>
+<div class="tamanho"> <button class="parametro-senhabotao">−</button>
 
-                        <button class="parametro-senha__botao">+</button>
-                    </div>
+<p class="parametro-senhatexto">12</p>
 
-                </div>
+<button class="parametro-senhabotao">+</button> </div>
 
-                <div class="parametro">
+</div>
 
-                    <h3>Características</h3>
+<div class="parametro">
 
-                    <label class="opcao">
-                        <input type="checkbox" class="checkbox" checked>
-                        Letras maiúsculas
-                    </label>
+<h3>Características</h3>
 
-                    <label class="opcao">
-                        <input type="checkbox" class="checkbox" checked>
-                        Letras minúsculas
-                    </label>
+<label class="opcao"> <input type="checkbox" class="checkbox" checked> Letras maiúsculas </label>
 
-                    <label class="opcao">
-                        <input type="checkbox" class="checkbox" checked>
-                        Números
-                    </label>
+<label class="opcao"> <input type="checkbox" class="checkbox" checked> Letras minúsculas </label>
 
-                    <label class="opcao">
-                        <input type="checkbox" class="checkbox" checked>
-                        Símbolos
-                    </label>
+<label class="opcao"> <input type="checkbox" class="checkbox" checked> Números </label>
 
-                </div>
+<label class="opcao"> <input type="checkbox" class="checkbox" checked> Símbolos </label>
 
-            </div>
+</div>
 
-            <div class="seguranca">
+</div>
 
-                <div class="titulo-forca">
-                    <h3>Segurança da senha</h3>
-                    <span id="nivel">FORTE</span>
-                </div>
+</section>
 
-                <div class="barra">
-                    <div class="forca"></div>
-                </div>
+</section>
 
-                <div class="legenda">
-                    <span><i class="muito-fraca"></i>Muito fraca</span>
-                    <span><i class="fraca"></i>Fraca</span>
-                    <span><i class="moderada"></i>Moderada</span>
-                    <span><i class="forte"></i>Forte</span>
-                    <span><i class="legendaria"></i>Legendária</span>
-                </div>
+ <aside class="painel-seguranca">
 
-                <p class="entropia"></p>
+<div class="placar"> <span class="placar-titulo">SCORE</span> <strong id="pontuacao">0</strong> <small>PONTOS</small> </div>
 
-            </div>
+<div class="seguranca">
 
-        </section>
+<div class="titulo-forca"> <h3>SEGURANÇA</h3> <span id="nivel">FORTE</span> </div>
 
-    </main>
+<div class="barra"> <div class="forca"></div> </div>
 
-    <script src="main.js"></script>
+<div class="legenda"> <span><i class="muito-fraca"></i>Muito fraca</span> <span><i class="fraca"></i>Fraca</span> <span><i class="moderada"></i>Moderada</span> <span><i class="forte"></i>Forte</span> <span><i class="legendaria"></i>Legendária</span> </div>
 
-</body>
-</html>
+<p class="entropia"></p>
+
+</div>
+
+</aside>
+
+</main>
+
+<script src="main.js"></script>
+
+</body> </html>
